@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tracer.Core
 {
-    internal class Tracer : ITracer
+    public class TracerRealisation : ITracer
     {
         public TraceResult GetTraceResult()
         {
