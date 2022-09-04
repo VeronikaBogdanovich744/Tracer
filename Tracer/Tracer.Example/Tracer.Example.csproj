@@ -41,7 +41,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tracer.Core">
+    <Reference Include="Tracer.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Tracer.Serialization.Abstractions\bin\Debug\net6.0\Tracer.Core.dll</HintPath>
     </Reference>
   </ItemGroup>

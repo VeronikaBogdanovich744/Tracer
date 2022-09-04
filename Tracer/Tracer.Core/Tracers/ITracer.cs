@@ -1,4 +1,6 @@
-﻿namespace Tracer.Core
+﻿using Tracer.Core.TraceResults;
+
+namespace Tracer.Core.Tracers
 {
     public interface ITracer
     {

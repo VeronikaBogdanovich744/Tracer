@@ -12,15 +12,17 @@ namespace Tracer.Example
     {
         static void Main(string[] args)
         {
-            StackTrace stackTrace = new StackTrace();
-            Console.WriteLine(stackTrace.GetFrame(0).GetMethod().Name);
+            //StackTrace stackTrace = new StackTrace();
+            // Console.WriteLine(stackTrace.GetFrame(0).GetMethod().Name);
+            foo();
             Console.Read();
         }
 
-       private void foo()
+       private static void foo()
         {
             ITracer tracer = new TracerRealisation();
-           
+            TraceResult result = tracer.GetTraceResult();
+            Console.WriteLine(result.MethodName.ToString());
         }
     }
 }
