@@ -34,8 +34,6 @@ namespace Tracer.Core.TraceResults
 
         public MethodTraceResult()
         {
-            Time = 0;
-            NestedMethodTraceResults = new List<MethodTraceResult>();
         }
 
 

@@ -39,8 +39,8 @@ namespace Tracer.Core.TraceResults
 
         public ThreadTraceResult()
         {
-            ThreadId = Thread.CurrentThread.ManagedThreadId;
-            Methods = new List<MethodTraceResult>();
+           /* ThreadId = Thread.CurrentThread.ManagedThreadId;
+            Methods = new List<MethodTraceResult>();*/
         }
 
         public ThreadTraceResult(int threadId)
