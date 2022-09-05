@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Tracer.Serialization
 {
-    internal class Yaml : Tracer.Serialization.Abstractions.ITraceResultSerializer
+    public class Yaml : Tracer.Serialization.Abstractions.ITraceResultSerializer
     {
         public void Serialize(TraceResult traceResult, Stream to)
         {

@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SerializerTests\" />
+    <Reference Include="Tracer.Serialization">
+      <HintPath>..\..\Tracer.Serialization\Tracer.Serialization\bin\Debug\net6.0\Tracer.Serialization.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
