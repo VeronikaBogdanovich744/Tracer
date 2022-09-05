@@ -16,7 +16,6 @@ namespace Tracer.Core.Tracers
 
         public ThreadTracer(int id)
         {
-           // var threadId = Thread.CurrentThread.ManagedThreadId;
             ThreadTraceResult = new ThreadTraceResult(id);
             _currentMethodTracer = null;
         }
@@ -47,13 +46,11 @@ namespace Tracer.Core.Tracers
                     ThreadTraceResult.AddMethod(methodTraceResult);
                     _currentMethodTracer = null;
                     }  
-          
-                 // }
             }
-         //   else
-         //   {
-          //      throw new InvalidOperationException();
-          //  }
+           else
+            {
+                throw new InvalidOperationException();
+            }
         }
 
 

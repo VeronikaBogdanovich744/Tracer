@@ -34,7 +34,7 @@ namespace Tracer.Core.Tracers
             {
                 var threadId = Thread.CurrentThread.ManagedThreadId; //get id of thread
                 ThreadTracer threadTracer;
-                //check if the thread is already in dictionary ???
+                //check if the thread is already in dictionary 
                 if (ThreadTracers.ContainsKey(threadId))
                 {
                     threadTracer = ThreadTracers[threadId];
@@ -44,29 +44,26 @@ namespace Tracer.Core.Tracers
                     threadTracer = new ThreadTracer(threadId);
                     ThreadTracers.Add(threadId, threadTracer);
                 }
-                //
+                
                 threadTracer.StartTrace();
             }
         }
 
         public void StopTrace()
         {
-            var threadId = Thread.CurrentThread.ManagedThreadId;
-            ThreadTracer threadTracer = ThreadTracers[threadId]; 
-            /*lock (Lock)
+            lock (locker)
             {
-                var threadId = GetCurrentThreadId();
+                var threadId = Thread.CurrentThread.ManagedThreadId;
                 if (ThreadTracers.ContainsKey(threadId))
                 {
-                    var threadTracer = ThreadTracers[threadId];
+                    ThreadTracer threadTracer = ThreadTracers[threadId];
                     threadTracer.StopTrace();
                 }
                 else
                 {
                     throw new InvalidOperationException();
                 }
-            }*/
-            threadTracer.StopTrace();
+            }
         }
     }
 }

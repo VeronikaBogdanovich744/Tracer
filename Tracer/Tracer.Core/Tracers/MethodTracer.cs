@@ -30,13 +30,6 @@ namespace Tracer.Core.Tracers
         public MethodTraceResult GetTraceResult()
         {
             StackTrace stackTrace = new StackTrace();
-            // TraceResult result = new TraceResult();
-            //get method name
-            // result.MethodName = stackTrace.GetFrame(1).GetMethod();
-            //get class name
-            //  result.ClassName = result.MethodName.DeclaringType;
-            //get time 
-            //  result.Time = stopWatch.Elapsed;
             return result;
         }
 
@@ -46,27 +39,16 @@ namespace Tracer.Core.Tracers
             {
                 isActive = true; //make a method an outer method for someone
                 stopWatch.Start();
-                //getting info about method
-
-                //
                 result = new MethodTraceResult(className, methodName);
             }
             else
             {
-               // MethodTracer innerMethodTracer;
                 if (InnerMethod == null)
                 {
                     InnerMethod = new MethodTracer();
-                    //NestedMethod.Push(innerMethodTracer);
-                    // NestedMethods.Push(innerMethodTracer);
                 }
-              //  else
-              //  {
-                   // innerMethodTracer = NestedMethod.Peek();
-              //  }
                 InnerMethod.StartTrace(className, methodName);
             }
-          //  stopWatch.Start();
         }
 
         public void StopTrace()
@@ -75,7 +57,6 @@ namespace Tracer.Core.Tracers
             {
                 if (InnerMethod != null) // если вложенный метод есть
                 {
-                    //var innerMethodTracer = _innerMethodTracers.Peek();
                     InnerMethod.StopTrace();
                     if (InnerMethod.IsActive()==false)
                     {
