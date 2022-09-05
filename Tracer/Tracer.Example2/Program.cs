@@ -21,13 +21,12 @@ namespace Tracer.Example
         static void Main(string[] args)
         {
             TraceResult traceResult = new TraceResult();
-           // tracer = new MainTracer();
 
             Thread thread = new Thread(new ThreadStart(AnotherThreadMethod));
             thread.Start();
 
-            Method1();
-            Method2();
+            classA.MethodA(ref tracer);
+            classB.MethodB(ref tracer);
 
             while (thread.IsAlive)
             {
@@ -36,42 +35,9 @@ namespace Tracer.Example
 
             var res = tracer.GetTraceResult();
 
-
-            MethodInfo myMethod = null;
-            object obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Xml", "Serialize",ref myMethod);
-            using (FileStream fs = new FileStream("methods.xml", FileMode.Create))
-            {
-                 myMethod.Invoke(obj,new object[] { res, fs });
-            }
-
-            obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Json", "Serialize", ref myMethod);
-            using (FileStream fs = new FileStream("methods.json", FileMode.Create))
-            {
-                myMethod.Invoke(obj, new object[] { res, fs });
-            }
-
-            obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Yaml", "Serialize", ref myMethod);
-            using (FileStream fs = new FileStream("methods.yaml", FileMode.Create))
-            {
-                myMethod.Invoke(obj, new object[] { res, fs });
-            }
-
-
-        }
-
-        private static void Method1()
-        {
-            tracer.StartTrace();
-            Thread.Sleep(100);
-            tracer.StopTrace();
-        }
-
-        private static void Method2()
-        {
-            tracer.StartTrace();
-            Method1();
-            Thread.Sleep(100);
-            tracer.StopTrace();
+            JsonSerilaization(res);
+            XmlSerilaization(res);
+            YamlSerilaization(res);
         }
 
         private static void AnotherThreadMethod()
@@ -80,5 +46,37 @@ namespace Tracer.Example
             Thread.Sleep(100);
             tracer.StopTrace();
         }
+
+        private static void JsonSerilaization(TraceResult res)
+        {
+            MethodInfo myMethod = null;
+            object obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Json", "Serialize", ref myMethod);
+            using (FileStream fs = new FileStream("methods.json", FileMode.Create))
+            {
+                myMethod.Invoke(obj, new object[] { res, fs });
+            }
+        }
+
+        private static void XmlSerilaization(TraceResult res)
+        {
+            MethodInfo myMethod = null;
+            object obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Xml", "Serialize", ref myMethod);
+            using (FileStream fs = new FileStream("methods.xml", FileMode.Create))
+            {
+                myMethod.Invoke(obj, new object[] { res, fs });
+            }
+        }
+
+        private static void YamlSerilaization(TraceResult res)
+        {
+            MethodInfo myMethod = null;
+            object obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Yaml", "Serialize", ref myMethod);
+            using (FileStream fs = new FileStream("methods.yaml", FileMode.Create))
+            {
+                myMethod.Invoke(obj, new object[] { res, fs });
+            }
+        }
+
+
     }
 }

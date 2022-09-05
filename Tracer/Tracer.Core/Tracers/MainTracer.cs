@@ -10,7 +10,7 @@ namespace Tracer.Core.Tracers
     public class MainTracer : ITracer
     {
         private TraceResult result { get; }
-        object locker = new();  // объект-заглушка
+        object locker = new();
         private Dictionary<int, ThreadTracer> ThreadTracers { get; }
         public MainTracer()
         {

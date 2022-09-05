@@ -22,8 +22,6 @@ namespace Tracer.Core.Tracers
         public MethodTracer()
         {
             stopWatch = new Stopwatch();
-          //  result = new MethodTraceResult();
-            //NestedMethod = new Stack<MethodTracer>();
             InnerMethod = null;
             bool isActive = false;
         }
