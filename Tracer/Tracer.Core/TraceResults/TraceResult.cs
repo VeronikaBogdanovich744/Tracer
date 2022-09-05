@@ -8,10 +8,11 @@ using System.Xml.Serialization;
 
 namespace Tracer.Core.TraceResults
 {
+    [Serializable]
     public class TraceResult
     {
 
-        [XmlElement("threads")]
+        [XmlElement("thread")]
         //list of threads
         public List<ThreadTraceResult> ThreadTraceResults { get; }
 

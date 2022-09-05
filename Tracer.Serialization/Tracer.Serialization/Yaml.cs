@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tracer.Core;
+using Tracer.Core.TraceResults;
 
 namespace Tracer.Serialization
 {

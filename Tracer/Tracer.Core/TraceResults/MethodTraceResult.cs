@@ -8,17 +8,18 @@ using System.Xml.Serialization;
 
 namespace Tracer.Core.TraceResults
 {
+    [Serializable]
     public class MethodTraceResult
     {
-        [XmlElement("time")]
+        [XmlAttribute]
         public double Time { get; set; }
-        [XmlElement("name")]
-        public string MethodName { get; }
+        [XmlAttribute]
+        public string MethodName { get; set; }
 
-        [XmlElement("class")]
-        public string ClassName { get; }
+        [XmlAttribute]
+        public string ClassName { get; set; }
 
-        [XmlElement("methods")]
+        [XmlElement("method")]
         public List<MethodTraceResult> NestedMethodTraceResults { get; }
 
         public MethodTraceResult(string className, string methodName)
@@ -32,12 +33,6 @@ namespace Tracer.Core.TraceResults
         public MethodTraceResult()
         {
             Time = 0;
-           /* var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(1).GetMethod();
-            MethodName = method.Name;*
-            ClassName = method.DeclaringType.FullName;*/
-            //ClassName = className;
-            //  MethodName = methodName;
             NestedMethodTraceResults = new List<MethodTraceResult>();
         }
 

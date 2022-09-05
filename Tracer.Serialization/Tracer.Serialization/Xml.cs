@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Tracer.Core;
+using Tracer.Core.TraceResults;
 
 namespace Tracer.Serialization
 {
@@ -11,7 +13,8 @@ namespace Tracer.Serialization
     {
         public void Serialize(TraceResult traceResult, Stream to)
         {
-            throw new NotImplementedException();
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(TraceResult));
+            xmlSerializer.Serialize(to, traceResult);
         }
     }
 }

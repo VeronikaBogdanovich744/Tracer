@@ -7,14 +7,16 @@ using System.Xml.Serialization;
 
 namespace Tracer.Core.TraceResults
 {
+    [Serializable]
     public class ThreadTraceResult
     {
-        [XmlElement("id")]
-        public int ThreadId { get; }
+        [XmlAttribute]
+        public int ThreadId { get; set; }
 
-        [XmlElement("methods")]
+        [XmlElement("method")]
         public List<MethodTraceResult>? Methods { get; }
 
+        [XmlAttribute]
         public double Time
         {
             get
@@ -26,6 +28,16 @@ namespace Tracer.Core.TraceResults
                 }
                 return time;
             }
+            set
+            {
+
+            }
+        }
+
+        public ThreadTraceResult()
+        {
+            ThreadId = Thread.CurrentThread.ManagedThreadId;
+            Methods = new List<MethodTraceResult>();
         }
 
         public ThreadTraceResult(int threadId)

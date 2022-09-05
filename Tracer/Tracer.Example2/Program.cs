@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Tracer.Core;
 using Tracer.Core.TraceResults;
 using Tracer.Core.Tracers;
@@ -31,7 +33,13 @@ namespace Tracer.Example
             }
 
             var res = tracer.GetTraceResult();
-            Console.Read();
+            MethodInfo myMethod = null;
+            object obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Xml", "Serialize",ref myMethod);
+            using (FileStream fs = new FileStream("methods.xml", FileMode.Create))
+            {
+                 myMethod.Invoke(obj,new object[] { res, fs });
+            }
+
         }
 
         private static void Method1()
