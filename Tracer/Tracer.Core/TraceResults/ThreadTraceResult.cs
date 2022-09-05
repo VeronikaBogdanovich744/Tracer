@@ -13,10 +13,8 @@ namespace Tracer.Core.TraceResults
     {
         [XmlAttribute]
         [JsonPropertyName("Id")]
+        [YamlDotNet.Serialization.YamlMember(Alias = "Id")]
         public int ThreadId { get; set; }
-
-        [XmlElement("method")]
-        public List<MethodTraceResult>? Methods { get; }
 
         [XmlAttribute]
         public double Time
@@ -35,6 +33,9 @@ namespace Tracer.Core.TraceResults
 
             }
         }
+
+        [XmlElement("method")]
+        public List<MethodTraceResult>? Methods { get; }
 
         public ThreadTraceResult()
         {

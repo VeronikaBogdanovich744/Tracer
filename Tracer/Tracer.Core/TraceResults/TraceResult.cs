@@ -15,6 +15,7 @@ namespace Tracer.Core.TraceResults
 
         [XmlElement("thread")]
         [JsonPropertyName("thread")]
+        [YamlDotNet.Serialization.YamlMember(Alias = "thread")]
         //list of threads
         public List<ThreadTraceResult> ThreadTraceResults { get; }
 

@@ -21,6 +21,7 @@ namespace Tracer.Core.TraceResults
 
         [XmlElement("method")]
         [JsonPropertyName("method")]
+        [YamlDotNet.Serialization.YamlMember(Alias = "method")]
         public List<MethodTraceResult> NestedMethodTraceResults { get; }
 
         public MethodTraceResult(string className, string methodName)

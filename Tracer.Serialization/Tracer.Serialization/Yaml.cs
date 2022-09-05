@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Tracer.Core;
 using Tracer.Core.TraceResults;
+using YamlDotNet;
+using YamlDotNet.Core;
+using YamlDotNet.Serialization.NamingConventions;
+using YamlDotNet.Serialization;
+using System.IO;
 
 namespace Tracer.Serialization
 {
@@ -12,7 +17,12 @@ namespace Tracer.Serialization
     {
         public void Serialize(TraceResult traceResult, Stream to)
         {
-            throw new NotImplementedException();
+            var serializer = new SerializerBuilder()
+            // .WithNamingConvention(CamelCaseNamingConvention.Instance)
+             .Build();
+            var yaml = serializer.Serialize(traceResult);
+            byte[] byteArray = Encoding.UTF8.GetBytes(yaml);
+            to.Write(byteArray, 0, byteArray.Length);
         }
     }
 }

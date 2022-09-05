@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -48,6 +49,13 @@ namespace Tracer.Example
             {
                 myMethod.Invoke(obj, new object[] { res, fs });
             }
+
+            obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Yaml", "Serialize", ref myMethod);
+            using (FileStream fs = new FileStream("methods.yaml", FileMode.Create))
+            {
+                myMethod.Invoke(obj, new object[] { res, fs });
+            }
+
 
         }
 
