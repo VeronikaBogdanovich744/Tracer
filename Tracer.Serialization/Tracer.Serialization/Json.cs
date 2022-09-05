@@ -1,4 +1,5 @@
-﻿using Tracer.Core;
+﻿using System.Text.Json;
+using Tracer.Core;
 using Tracer.Core.TraceResults;
 
 namespace Tracer.Serialization
@@ -8,7 +9,7 @@ namespace Tracer.Serialization
 
         public void Serialize(TraceResult traceResult, Stream to)
         {
-            throw new NotImplementedException();
+            JsonSerializer.Serialize<TraceResult>(to, traceResult);
         }
     }
 }

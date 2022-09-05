@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -12,14 +13,14 @@ namespace Tracer.Core.TraceResults
     public class MethodTraceResult
     {
         [XmlAttribute]
-        public double Time { get; set; }
+        public string ClassName { get; set; }
         [XmlAttribute]
         public string MethodName { get; set; }
-
         [XmlAttribute]
-        public string ClassName { get; set; }
+        public double Time { get; set; }
 
         [XmlElement("method")]
+        [JsonPropertyName("method")]
         public List<MethodTraceResult> NestedMethodTraceResults { get; }
 
         public MethodTraceResult(string className, string methodName)

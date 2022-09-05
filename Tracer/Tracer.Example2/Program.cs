@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Tracer.Core;
@@ -33,11 +34,19 @@ namespace Tracer.Example
             }
 
             var res = tracer.GetTraceResult();
+
+
             MethodInfo myMethod = null;
             object obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Xml", "Serialize",ref myMethod);
             using (FileStream fs = new FileStream("methods.xml", FileMode.Create))
             {
                  myMethod.Invoke(obj,new object[] { res, fs });
+            }
+
+            obj = Tracer.Core.Plugin.getAddon("Tracer.Serialization.Json", "Serialize", ref myMethod);
+            using (FileStream fs = new FileStream("methods.json", FileMode.Create))
+            {
+                myMethod.Invoke(obj, new object[] { res, fs });
             }
 
         }
